@@ -39,13 +39,13 @@ nn = NeuralNetwork(3, 2, 4, 1)
 
 ```python
 # 训练神经网络nn
-Theta, steps, Js = nn.gradient_descent(X,  	# input数据
-                Y,							# label数据
-                ini_Theta,					# 初始化的神经网络参数矩阵（建立NeuralNetwork示例的时候已经初始化好了，直接使用nn.ini_Theta即可）
-                alpha=0.01,					# 学习率
-                lambda=1,   				# 正则化项
-                exponential_decay=False,	# 是否用指数下降的学习率
-                threshold=1e-7)				# 结束训练的损失函数阈值
+Theta, steps, Js = nn.gradient_descent(X,   # input数据
+                Y,                          # label数据
+                ini_Theta,                  # 初始化的神经网络参数矩阵（建立NeuralNetwork示例的时候已经初始化好了，直接使用nn.ini_Theta即可）
+                alpha=0.01,                 # 学习率
+                lamda=1,                   # 正则化项
+                exponential_decay=False,    # 是否用指数下降的学习率
+                threshold=1e-7)	            # 结束训练的损失函数阈值
 ```
 
 训练完成后会返回：训练后的神经网络参数矩阵（`Theta`），训练过程中的训练步数（`steps`）以及训练过程中的损失函数值列表（`Js`）
@@ -56,8 +56,8 @@ Theta, steps, Js = nn.gradient_descent(X,  	# input数据
 
 ```python
 # 测试神经网络nn
-h, A = nn.forward_propagation(X_test, 		# 测试数据
-       		                  Theta)		# 训练后的神经网络参数
+h, A = nn.forward_propagation(X_test,       # 测试数据
+                              Theta)        # 训练后的神经网络参数
 ```
 
 返回的`h`即为输出层的结果，`A`为前向传播过程中隐藏层各个节点的激活值。
@@ -80,9 +80,9 @@ h, A = nn.forward_propagation(X_test, 		# 测试数据
 from k_means import K_means
 
 # 对未标记的input数据进行K-means算法
-labels, mus, J = K_means(X,			# 未标记的input数据
-                         K,			# 需要标记的种类数
-                         times)		# 进行多少步算法迭代
+labels, mus, J = K_means(X,         # 未标记的input数据
+                         K,         # 需要标记的种类数
+                         times)     # 进行多少步算法迭代
 ```
 
 该函数返回三个参数：`labels`是对于input数据的标记结果，`mus`是对于K个种类的质心坐标，`J`是标记结果对应的损失函数值。
