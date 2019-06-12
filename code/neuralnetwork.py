@@ -104,7 +104,7 @@ class NeuralNetwork(object):
 		return J
 
 
-	def gradient_descent(self, X, Y, ini_Theta, alpha=0.01, lamda=1, exponential_decay=False, threshold=1e-7):
+	def gradient_descent(self, X, Y, ini_Theta, alpha=0.01, lamda=1, exponential_decay=False, threshold=1e-7, max_step=500):
 		"""
 			implement the gradient descent algorithm with back propagation, and returns the
 			optimized weights (parameters) of all layers (Theta), times of iterations (steps),
@@ -128,7 +128,7 @@ class NeuralNetwork(object):
 			DD = []
 			last_J = J
 			# back propatation (BP)
-			if step % 50 == 0:
+			if step % 5 == 0:
 				print("    step: %d, J: %.6f, α: %.6f" %(step, J, alpha))
 			if exponential_decay == True:
 				# exponential decay leraning rate
@@ -153,7 +153,7 @@ class NeuralNetwork(object):
 			step += 1
 
 			# end condition
-			if abs(last_J - J) < threshold or step >= 30000:
+			if abs(last_J - J) < threshold or step >= max_step:
 				break
 		print("===== Fitting Over =====")
 		print("    J = %.6f" %J)
@@ -310,7 +310,7 @@ def _test():
 	print("number of nodes per hidden layer: %d" %A.num_nodes_per_hidden)
 	print("number of nodes in the output layer: %d" %A.num_outputs)
 	X, Y = get_dataset()
-	Theta, steps, Js = A.gradient_descent(X, Y, A.ini_Theta, alpha=0.0003, lamda=1)
+	Theta, steps, Js = A.gradient_descent(X, Y, A.ini_Theta, alpha=0.0003, lamda=1, max_step=1000)
 
 
 	###### plot the result ######
